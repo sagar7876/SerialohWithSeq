@@ -1,54 +1,59 @@
 ## File: SerialogWithSeq/Controllers/WeatherForecastController.cs
-## File Content: using Microsoft.AspNetCore.Mvc;
+
+**File Content:**
+
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace SerialogWithSeq.Controllers
-\{
+{
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
-    \{
+    {
         private static readonly string[] Summaries = new[]
-        \{
+        {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        \};
+        };
 
-        private readonly ILogger<WeatherForecastController> \_logger;
+        private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        \{
-            \_logger = logger;
-        \}
+        {
+            _logger = logger;
+        }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
-        \{
+        {
             Log.Information("Weather get info start");
             try
-            \{
+            {
                 int zero = 0;
                 int b = 5 / zero;
                 return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-                \{
+                {
                     Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-                \})
+                })
                 .ToArray();
-            \}
+            }
             catch (Exception ex)
-            \{
+            {
                 Log.Error("Weather get info error : ", ex.Message);
                 throw;
-            \}
-        \}
-    \}
-\}
-
+            }
+        }
+    }
+}
 
 
 ## File: SerialogWithSeq/Program.cs
-## File Content: using Serilog;
+
+**File Content:**
+
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,9 +80,9 @@ Log.Logger = new LoggerConfiguration()
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
-\{
+{
     app.MapOpenApi();
-\}
+}
 
 app.UseAuthorization();
 
@@ -86,21 +91,107 @@ app.MapControllers();
 app.Run();
 
 
+## File: SerialogWithSeq/Properties/PublishProfiles/FolderProfile.pubxml
+
+**File Content:**
+
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <DeleteExistingFiles>false</DeleteExistingFiles>
+    <ExcludeApp_Data>false</ExcludeApp_Data>
+    <LaunchSiteAfterPublish>true</LaunchSiteAfterPublish>
+    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <PublishProvider>FileSystem</PublishProvider>
+    <PublishUrl>C:\Deployment</PublishUrl>
+    <WebPublishMethod>FileSystem</WebPublishMethod>
+    <_TargetId>Folder</_TargetId>
+  </PropertyGroup>
+</Project>
+
+## File: SerialogWithSeq/Properties/PublishProfiles/FolderProfile.pubxml.user
+
+**File Content:**
+
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Deployment</_PublishTargetUrl>
+    <History>True|2024-11-28T16:54:17.3446812Z||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>
+
+## File: SerialogWithSeq/SerialogWithSeq.csproj
+
+**File Content:**
+
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
+    <PackageReference Include="Serilog" Version="4.1.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>
+
+
+## File: SerialogWithSeq/SerialogWithSeq.csproj.user
+
+**File Content:**
+
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <NameOfLastUsedPublishProfile>C:\Sagar\Koder AI\SeialogWithSeq\SerialogWithSeq\SerialogWithSeq\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
+  </PropertyGroup>
+</Project>
+
+## File: SerialogWithSeq/SerialogWithSeq.http
+
+**File Content:**
+
+@SerialogWithSeq_HostAddress = http://localhost:5250
+
+GET {{SerialogWithSeq_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
 
 ## File: SerialogWithSeq/WeatherForecast.cs
-## File Content: namespace SerialogWithSeq
-\{
-    public class WeatherForecast
-    \{
-        public DateOnly Date \{ get; set; \}
 
-        public int TemperatureC \{ get; set; \}
+**File Content:**
+
+namespace SerialogWithSeq
+{
+    public class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+
+        public int TemperatureC { get; set; }
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
-        public string? Summary \{ get; set; \}
-    \}
-\}
-
+        public string? Summary { get; set; }
+    }
+}
 
 
