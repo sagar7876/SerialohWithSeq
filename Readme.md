@@ -1,5 +1,5 @@
-## SerialogWithSeq/Controllers/WeatherForecastController.cs
-using Microsoft.AspNetCore.Mvc;
+## File: SerialogWithSeq/Controllers/WeatherForecastController.cs
+## File Content: using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace SerialogWithSeq.Controllers
@@ -46,8 +46,9 @@ namespace SerialogWithSeq.Controllers
 \}
 
 
-## SerialogWithSeq/Program.cs
-using Serilog;
+
+## File: SerialogWithSeq/Program.cs
+## File Content: using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -85,8 +86,9 @@ app.MapControllers();
 app.Run();
 
 
-## SerialogWithSeq/WeatherForecast.cs
-namespace SerialogWithSeq
+
+## File: SerialogWithSeq/WeatherForecast.cs
+## File Content: namespace SerialogWithSeq
 \{
     public class WeatherForecast
     \{
@@ -99,5 +101,6 @@ namespace SerialogWithSeq
         public string? Summary \{ get; set; \}
     \}
 \}
+
 
 
