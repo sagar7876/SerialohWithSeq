@@ -16,15 +16,15 @@ namespace SerialogWithSeq.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger logger)
         {
             _logger = logger;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable Get()
         {
             Log.Information("Weather get info start");
             try
@@ -89,91 +89,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-
-## File: SerialogWithSeq/Properties/PublishProfiles/FolderProfile.pubxml
-
-**File Content:**
-
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-https://go.microsoft.com/fwlink/?LinkID=208121.
--->
-<Project>
-  <PropertyGroup>
-    <DeleteExistingFiles>false</DeleteExistingFiles>
-    <ExcludeApp_Data>false</ExcludeApp_Data>
-    <LaunchSiteAfterPublish>true</LaunchSiteAfterPublish>
-    <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
-    <LastUsedPlatform>Any CPU</LastUsedPlatform>
-    <PublishProvider>FileSystem</PublishProvider>
-    <PublishUrl>C:\Deployment</PublishUrl>
-    <WebPublishMethod>FileSystem</WebPublishMethod>
-    <_TargetId>Folder</_TargetId>
-  </PropertyGroup>
-</Project>
-
-## File: SerialogWithSeq/Properties/PublishProfiles/FolderProfile.pubxml.user
-
-**File Content:**
-
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-https://go.microsoft.com/fwlink/?LinkID=208121.
--->
-<Project>
-  <PropertyGroup>
-    <_PublishTargetUrl>C:\Deployment</_PublishTargetUrl>
-    <History>True|2024-11-28T16:54:17.3446812Z||;</History>
-    <LastFailureDetails />
-  </PropertyGroup>
-</Project>
-
-## File: SerialogWithSeq/SerialogWithSeq.csproj
-
-**File Content:**
-
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0" />
-    <PackageReference Include="Serilog" Version="4.1.0" />
-    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
-    <PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0" />
-    <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
-  </ItemGroup>
-
-</Project>
-
-
-## File: SerialogWithSeq/SerialogWithSeq.csproj.user
-
-**File Content:**
-
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <NameOfLastUsedPublishProfile>C:\Sagar\Koder AI\SeialogWithSeq\SerialogWithSeq\SerialogWithSeq\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
-  </PropertyGroup>
-</Project>
-
-## File: SerialogWithSeq/SerialogWithSeq.http
-
-**File Content:**
-
-@SerialogWithSeq_HostAddress = http://localhost:5250
-
-GET {{SerialogWithSeq_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
 
 
 ## File: SerialogWithSeq/WeatherForecast.cs
